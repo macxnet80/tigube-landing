@@ -243,30 +243,30 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Images Section */}
             <div className="relative">
-              {/* Mobile Layout - Stacked Images with Original Ratios */}
+              {/* Mobile Layout - Stacked Images with Natural Aspect Ratios */}
               <div className="block lg:hidden space-y-6">
-                {/* Gabriel - Original ratio maintained */}
-                <div className="w-full max-w-xs mx-auto">
+                {/* Gabriel - Natural aspect ratio */}
+                <div className="w-full max-w-sm mx-auto">
                   <img
                     src="/images/tigube_Gabriel_Haaga.jpg"
                     alt="Gabriel Haaga"
-                    className="w-full h-80 object-cover rounded-lg shadow-lg"
+                    className="w-full h-auto object-contain rounded-lg shadow-lg"
                   />
                 </div>
-                {/* Tamara - Original ratio maintained */}
-                <div className="w-full max-w-xs mx-auto">
+                {/* Tamara - Natural aspect ratio */}
+                <div className="w-full max-w-sm mx-auto">
                   <img
                     src="/images/tigube_Tamara_Pfaff.jpg"
                     alt="Tamara Pfaff"
-                    className="w-full h-80 object-cover rounded-lg shadow-lg"
+                    className="w-full h-auto object-contain rounded-lg shadow-lg"
                   />
                 </div>
-                {/* Luna - Original ratio maintained */}
-                <div className="w-full max-w-xs mx-auto">
+                {/* Luna - Natural aspect ratio */}
+                <div className="w-full max-w-sm mx-auto">
                   <img
                     src="/images/Boxer_Hund_Luna.jpg"
                     alt="Luna - Boxer Hund"
-                    className="w-full h-60 object-cover rounded-lg shadow-lg"
+                    className="w-full h-auto object-contain rounded-lg shadow-lg"
                   />
                 </div>
               </div>
