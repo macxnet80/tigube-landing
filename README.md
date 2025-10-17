@@ -1,30 +1,43 @@
 # Tierbetreuungs Landingpage
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+Eine moderne Landingpage für Tierbetreuungsdienste, entwickelt mit Next.js und Tailwind CSS.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/tigubes-projects/v0-tierbetreuungs-landingpage)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/nzegIeVS9Bj)
+## Überblick
 
-## Overview
+Diese Landingpage bietet eine benutzerfreundliche Oberfläche für Tierbetreuungsdienste mit modernem Design und responsiver Funktionalität.
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Technologien
 
-## Deployment
+- **Next.js** - React Framework
+- **TypeScript** - Typsichere Entwicklung
+- **Tailwind CSS** - Utility-first CSS Framework
+- **Supabase** - Backend-as-a-Service
+- **shadcn/ui** - UI-Komponenten
 
-Your project is live at:
+## Features
 
-**[https://vercel.com/tigubes-projects/v0-tierbetreuungs-landingpage](https://vercel.com/tigubes-projects/v0-tierbetreuungs-landingpage)**
+- Responsive Design
+- Newsletter-Anmeldung
+- Kontaktformular
+- Admin-Bereich für E-Mail-Anmeldungen
+- Moderne UI-Komponenten
 
-## Build your app
+## Entwicklung
 
-Continue building your app on:
+```bash
+# Dependencies installieren
+npm install
 
-**[https://v0.dev/chat/projects/nzegIeVS9Bj](https://v0.dev/chat/projects/nzegIeVS9Bj)**
+# Entwicklungsserver starten
+npm run dev
 
-## How It Works
+# Build für Produktion
+npm run build
+```
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+## Projektstruktur
+
+- `app/` - Next.js App Router Seiten
+- `components/` - Wiederverwendbare React-Komponenten
+- `lib/` - Utility-Funktionen und Konfiguration
+- `public/` - Statische Assets
