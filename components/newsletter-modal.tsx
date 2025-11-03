@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { X, Mail, CheckCircle, AlertCircle } from "lucide-react"
-import { supabase } from "@/lib/supabase"
 
 interface NewsletterModalProps {
   isOpen: boolean
@@ -11,8 +10,10 @@ interface NewsletterModalProps {
 
 export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
   const [step, setStep] = useState(1)
+  const [vorname, setVorname] = useState("")
+  const [name, setName] = useState("")
   const [email, setEmail] = useState("")
-  const [userType, setUserType] = useState<"pet_owner" | "pet_sitter" | null>(null)
+  const [userType, setUserType] = useState<"Tierhalter" | "Dienstleister" | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [mounted, setMounted] = useState(false)
@@ -39,31 +40,35 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!email || !userType) return
+    if (!vorname || !name || !email || !userType) return
 
     setLoading(true)
     setError("")
 
     try {
-      const { error } = await supabase
-        .from("email_signups")
-        .insert([
-          {
-            email: email,
-            source: "newsletter_modal",
-            is_verified: false,
-          },
-        ])
+      const webhookUrl = "https://auto.macario.dev/webhook-test/704e405e-6894-43d6-85c9-0ae64045b1cf"
+      
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          vorname: vorname,
+          name: name,
+          email: email,
+          user_type: userType,
+          source: "newsletter_modal",
+        }),
+      })
 
-      if (error) {
-        console.log("Supabase error:", error)
-        setError("Fehler beim Speichern. Bitte versuchen Sie es erneut.")
-        return
+      if (!response.ok) {
+        throw new Error(`Webhook request failed with status ${response.status}`)
       }
 
       setStep(2)
     } catch (err) {
-      console.log("Error:", err)
+      console.error("Webhook error:", err)
       setError("Fehler beim Speichern. Bitte versuchen Sie es erneut.")
     } finally {
       setLoading(false)
@@ -72,6 +77,8 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
 
   const resetModal = () => {
     setStep(1)
+    setVorname("")
+    setName("")
     setEmail("")
     setUserType(null)
     setError("")
@@ -124,6 +131,37 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
 
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Vorname
+                    </label>
+                    <input
+                      type="text"
+                      value={vorname}
+                      onChange={(e) => setVorname(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6b8e46] focus:border-transparent"
+                      placeholder="Max"
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6b8e46] focus:border-transparent"
+                      placeholder="Mustermann"
+                      required
+                      disabled={loading}
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     E-Mail-Adresse
@@ -135,6 +173,7 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6b8e46] focus:border-transparent"
                     placeholder="deine@email.de"
                     required
+                    disabled={loading}
                   />
                 </div>
 
@@ -145,9 +184,9 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <button
                       type="button"
-                      onClick={() => setUserType("pet_owner")}
+                      onClick={() => setUserType("Tierhalter")}
                       className={`p-3 rounded-lg border-2 transition-colors text-sm md:text-base ${
-                        userType === "pet_owner"
+                        userType === "Tierhalter"
                           ? "border-[#6b8e46] bg-[#6b8e46] text-white"
                           : "border-gray-300 hover:border-gray-400"
                       }`}
@@ -156,14 +195,14 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setUserType("pet_sitter")}
+                      onClick={() => setUserType("Dienstleister")}
                       className={`p-3 rounded-lg border-2 transition-colors text-sm md:text-base ${
-                        userType === "pet_sitter"
+                        userType === "Dienstleister"
                           ? "border-[#6b8e46] bg-[#6b8e46] text-white"
                           : "border-gray-300 hover:border-gray-400"
                       }`}
                     >
-                      Betreuungsperson
+                      Dienstleister
                     </button>
                   </div>
                 </div>
@@ -177,7 +216,7 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
 
                 <button
                   type="submit"
-                  disabled={loading || !email || !userType}
+                  disabled={loading || !vorname || !name || !email || !userType}
                   className="w-full bg-[#6b8e46] text-white py-3 px-6 rounded-lg font-semibold hover:bg-[#5a7a3a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Wird gespeichert..." : "E-Mail eintragen & dabei sein"}

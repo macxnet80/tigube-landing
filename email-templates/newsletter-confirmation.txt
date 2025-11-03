@@ -1,0 +1,29 @@
+tigube
+
+Hallo {FIRSTNAME},
+
+vielen Dank, dass du dich für den tigube Newsletter angemeldet hast! 🐾
+
+Um deine Anmeldung zu bestätigen und tierisch gute Neuigkeiten zu erhalten, klicke bitte auf den folgenden Link:
+
+{ACTIVATION_LINK}
+
+Oder kopiere diesen Link in deinen Browser:
+{ACTIVATION_LINK}
+
+Wichtig:
+Falls du diese E-Mail versehentlich erhalten hast, löschen sie einfach. Du wirst nicht in unseren Verteiler eingetragen, wenn du nicht auf den Bestätigungslink klickst.
+
+Wir freuen uns, dich in der tigube-Community willkommen zu heißen! 🐾
+
+Liebe Grüße,
+Das tigube Team
+
+---
+
+tigube - Tierisch gut betreut
+
+Newsletter abmelden: {UNSUBSCRIBE_LINK}
+
+Diese E-Mail wurde an {EMAIL} gesendet.
+
