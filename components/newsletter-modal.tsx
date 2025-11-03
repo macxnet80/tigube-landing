@@ -46,7 +46,7 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
     setError("")
 
     try {
-      const webhookUrl = "https://auto.macario.dev/webhook-test/704e405e-6894-43d6-85c9-0ae64045b1cf"
+      const webhookUrl = "https://auto.macario.dev/webhook/704e405e-6894-43d6-85c9-0ae64045b1cf"
       
       const response = await fetch(webhookUrl, {
         method: "POST",
