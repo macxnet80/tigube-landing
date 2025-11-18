@@ -1,8 +1,11 @@
-import { EmailForm } from "@/components/email-form"
-import { NewsletterModalWrapper } from "../components/newsletter-modal-wrapper"
+"use client"
+
+import { useState } from "react"
+import { NewsletterModal } from "../components/newsletter-modal"
 import Link from "next/link"
 
 export default function LandingPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -36,13 +39,12 @@ export default function LandingPage() {
 
           {/* CTA Button */}
           <div className="mb-6 md:mb-8">
-            <NewsletterModalWrapper>
-              <button 
-                className="bg-[#6b8e46] hover:bg-[#5a7a3a] text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full text-base md:text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full max-w-xs mx-auto block"
-              >
-                Jetzt vormerken
-              </button>
-            </NewsletterModalWrapper>
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="bg-[#6b8e46] hover:bg-[#5a7a3a] text-white font-semibold py-3 md:py-4 px-6 md:px-8 rounded-full text-base md:text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 w-full max-w-xs mx-auto block"
+            >
+              Jetzt vormerken
+            </button>
           </div>
 
         </div>
@@ -366,11 +368,12 @@ export default function LandingPage() {
             tigube bringt zusammen, was zusammengehört.
           </p>
 
-          <NewsletterModalWrapper>
-            <button className="bg-white text-[#6b8e46] font-semibold py-4 px-8 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:bg-gray-50">
-              Jetzt vormerken
-            </button>
-          </NewsletterModalWrapper>
+          <button 
+            onClick={() => setIsModalOpen(true)}
+            className="bg-white text-[#6b8e46] font-semibold py-4 px-8 rounded-full text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:bg-gray-50"
+          >
+            Jetzt vormerken
+          </button>
 
           <p className="mt-6 text-sm opacity-90">
             Kostenlose Registrierung • Keine versteckten Gebühren • Jederzeit kündbar
@@ -405,6 +408,11 @@ export default function LandingPage() {
         </div>
       </footer>
 
+      {/* Single Newsletter Modal - shared by all CTAs */}
+      <NewsletterModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+      />
     </main>
   )
 }
