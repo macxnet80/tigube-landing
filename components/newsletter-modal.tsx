@@ -104,6 +104,14 @@ export function NewsletterModal({ isOpen, onClose }: NewsletterModalProps) {
           </button>
         </div>
 
+        {/* Announcement Banner */}
+        <div className="px-4 md:px-6 pb-3 flex justify-center">
+          <div className="inline-flex items-center gap-1.5 bg-red-50 border border-red-200 rounded-full px-2 py-1">
+            <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+            <span className="text-red-700 text-xs font-medium">3 Monate gratis nur für kurze Zeit</span>
+          </div>
+        </div>
+
         {/* Content */}
         <div className="px-4 md:px-6 pb-6">
           {step === 1 ? (

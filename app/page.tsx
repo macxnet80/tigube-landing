@@ -15,7 +15,7 @@ export default function LandingPage() {
           {/* Announcement Banner */}
           <div className="inline-flex items-center gap-2 bg-red-50 border border-red-200 rounded-full px-3 md:px-4 py-2 mb-6 md:mb-8">
             <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <span className="text-red-700 text-xs md:text-sm font-medium">Ankündigung: tigube startet bald!</span>
+            <span className="text-red-700 text-xs md:text-sm font-medium">3 Monate gratis nur für kurze Zeit</span>
           </div>
 
           {/* Logo */}
