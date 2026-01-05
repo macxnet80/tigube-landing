@@ -66,7 +66,7 @@ export default function LandingPage() {
       {/* Benefits Section */}
       <section className="py-12 md:py-16 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 px-2">So funktioniert Tigube?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 px-2">So funktioniert Tigube!</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
             {/* Für Tierhalter */}
